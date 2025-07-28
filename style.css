@@ -59,3 +59,62 @@
 .search-bar button:hover {
     background-color: #1565c0;
 }
+
+/* Category Section */
+.category {
+    padding: 32px;
+}
+
+.category h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+/* Product Card */
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 16px;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1976d2;
+    margin-bottom: 16px;
+}
+
+.product-card button {
+    background-color: #1976d2;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.product-card button:hover {
+    background-color: #1565c0;
+}
