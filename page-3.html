@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ecommerce</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="main-container">
+    <header>
+      <div class="nav">
+        <img src="images/brand/logo-colored.svg" alt="" />
+
+        <div class="search-bar">
+          <input type="text" placeholder="Search" name="" id="" />
+          <select name="" id="">
+            <option value="">All Category</option>
+          </select>
+          <button>Search</button>
+        </div>
+        <div class="icons">
+          <div>
+            <img src="images/icons/profile.svg" alt="" />
+            <p>Profile</p>
+          </div>
+          <div>
+            <img src="images/icons/message.svg" alt="" />
+            <p>Message</p>
+          </div>
+          <div>
+            <img src="images/icons/orders.svg" alt="" />
+            <p>Orders</p>
+          </div>
+          <div>
+            <img src="images/icons/cart.svg" alt="" />
+            <p>My Cart</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="top-bar">
+        <div class="left-menu">
+          <span>☰ All category</span>
+          <a href="#">Hot offers</a>
+          <a href="#">Gift boxes</a>
+          <a href="#">Projects</a>
+          <a href="#">Menu Item</a>
+          <a href="#">Help </a>
+        </div>
+        <div class="right-menu">
+          <a href="#">English, USD </a>
+          <a href="#"
+            >Ship to <img src="images/icons/flags.svg" alt="Flag"
+          /></a>
+        </div>
+      </div>
+    </header>
+    <div class="product-toolbar">
+  <!-- Breadcrumbs -->
+  <div class="toolbar-top">
+    <nav class="breadcrumbs">
+      <a href="#">Home</a> &gt;
+      <a href="#">Clothings</a> &gt;
+      <a href="#">Men’s wear</a> &gt;
+      <span>Summer clothing</span>
+    </nav>
+  </div>
+
+  <!-- Sorting & View Options -->
+  <div class="toolbar-controls">
+    <!-- Item Count -->
+    <div class="item-count">
+      <strong>12,911</strong> items in <strong>Mobile accessory</strong>
+    </div>
+
+    <!-- Filters and View Mode -->
+    <div class="toolbar-actions">
+      <label class="verified-only">
+        <input type="checkbox" checked />
+        Verified only
+      </label>
+
+      <select class="sort-select">
+        <option value="featured">Featured</option>
+        <option value="lowest">Lowest Price</option>
+        <option value="highest">Highest Price</option>
+      </select>
+
+      <div class="view-toggle">
+        <button class="view-btn active" aria-label="Grid View">🔳</button>
+        <button class="view-btn" aria-label="List View">📋</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main-content">
+    <section class="shop-layout">
+  <!-- Sidebar -->
+  <aside class="filter-sidebar">
+    <!-- Category -->
+    <div class="filter-section">
+      <h4 class="filter-title">Category <span>▾</span></h4>
+      <ul class="filter-list">
+        <li><input type="checkbox" /> Mobile accessory</li>
+        <li><input type="checkbox" /> Electronics</li>
+        <li><input type="checkbox" /> Smartphones</li>
+        <li><input type="checkbox" /> Modern tech</li>
+        <li><a href="#">See all</a></li>
+      </ul>
+    </div>
+
+    <!-- Brands -->
+    <div class="filter-section">
+      <h4 class="filter-title">Brands <span>▾</span></h4>
+      <ul class="filter-list">
+        <li><input type="checkbox" checked /> Samsung</li>
+        <li><input type="checkbox" /> Apple</li>
+        <li><input type="checkbox" /> Huawei</li>
+        <li><input type="checkbox" /> Poco</li>
+        <li><input type="checkbox" /> Lenovo</li>
+        <li><a href="#">See all</a></li>
+      </ul>
+    </div>
+
+    <!-- Features -->
+    <div class="filter-section">
+      <h4 class="filter-title">Features <span>▾</span></h4>
+      <ul class="filter-list">
+        <li><input type="checkbox" checked /> Metallic</li>
+        <li><input type="checkbox" /> Plastic cover</li>
+        <li><input type="checkbox" /> 8GB Ram</li>
+        <li><input type="checkbox" /> Super power</li>
+        <li><input type="checkbox" /> Large Memory</li>
+        <li><a href="#">See all</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Product Grid -->
+  <main class="product-gallery">
+    <div class="product-tile">
+      <img src="images/photos/apple.svg" alt="Red iPhone" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/blue-iphone.svg" alt="Blue iPhone" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 5.9</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/phone.svg" alt="Android Phone" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50</div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/android-phone.svg" alt="Tablet" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/camera.svg" alt="Camera" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/blue-iphone.svg" alt="Dark Blue Phone" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/laptops.svg" alt="Laptop" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/watch.svg" alt="Smart Watch" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+
+    <div class="product-tile">
+      <img src="images/photos/h1.svg" alt="H1 Product" />
+      <div class="tile-info">
+        <div class="tile-price">$99.50</div>
+        <div class="tile-rating">⭐ 7.5</div>
+        <p>GoPro HERO6 4K Action Camera - Black</p>
+      </div>
+      <div class="tile-wishlist">🤍</div>
+    </div>
+    </div>
+  </main>
+</section>
+
+     <footer>
+      <div class="newsletter">
+        <h3>Subscribe On Our Newsletter</h3>
+        <p>
+          Get daily news on upcoming offers from many suppliers all over the
+          world
+        </p>
+        <form>
+          <input type="email" placeholder="Email" name="" id="" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/Brand/logo-colored.svg" alt="" />
+          <p>
+            Best information about the company gies here but now lorem ipsum is
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/" target="_blank"
+              ><img src="images/icons/facebook.svg" alt=""
+            /></a>
+            <a href="https://x.com/" target="_blank"
+              ><img src="images/icons/twitter.svg" alt=""
+            /></a>
+            <a href="https://www.linkedin.com/" target="_blank"
+              ><img src="images/icons/linkedin.svg" alt=""
+            /></a>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><img src="images/icons/instagram.svg" alt=""
+            /></a>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><img src="images/icons/youtube.svg" alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>Partnership</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>Information</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>For users</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+
+          <div class="stores">
+            <h4>Get app</h4>
+            <img src="images/icons/app-store.svg" alt="" />
+            <img src="images/icons/google-play.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>@ 2023 Ecommerce.</p>
+        <div class="lang-select">
+          <img src="images/icons/usa-flag.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
