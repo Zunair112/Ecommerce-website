@@ -1651,14 +1651,19 @@ h1 {
   text-align: center;
   cursor: pointer;
 }
-
+/* Main container for tabs and sidebar together */
 .tab-box {
-  display: inline-block;
-  vertical-align: top;
-  width: 70%;
-  margin-left: 3rem; /* 🆕 Left gap */
+  display: flex;
+  gap: 30px;
+  margin-left: 3rem;
+  max-width: 1200px;
 }
 
+/* Left side content wrapper */
+.tabs-section {
+  flex: 1;
+  width: 70%;
+}
 
 /* === Tabs Navigation === */
 .tabs {
@@ -1687,15 +1692,14 @@ h1 {
   border-color: #007aff;
 }
 
-/* === Tab Content and Sidebar Wrapper === */
+/* Wrapper for tab content */
 .tabs-wrapper {
-  display: flex;
-  gap: 40px;
+  width: 100%;
 }
 
-/* === Main Content Area === */
+/* === Tab Content === */
 .tab-content {
-  flex: 3;
+  width: 100%;
 }
 
 .description-text {
@@ -1729,16 +1733,14 @@ h1 {
   line-height: 1.7;
 }
 
-
-
+/* Right side - You may like sidebar */
 .you-may-like-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  width: 280px;
-  margin-left: 40px;
+  width: 250px;
+  flex-shrink: 0;
 }
+
 .sidebar-suggestions {
-  width: 280px;
+  width: 100%;
   background: #fff;
   border: 1px solid #eee;
   border-radius: 6px;
@@ -1757,7 +1759,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 2rem; /* Two-line spacing */
+  margin-bottom: 2rem;
 }
 
 .suggestion-card img {
@@ -1779,13 +1781,11 @@ h1 {
   color: #777;
 }
 
-
-
-
-
 /* === Related Products Carousel === */
 .related-products {
   margin-top: 40px;
+  clear: both;
+  width: 100%;
 }
 
 .related-products h3 {

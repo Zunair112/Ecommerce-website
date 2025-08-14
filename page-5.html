@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand - Shopping Cart</title>
+    <link rel="stylesheet" href="page-5.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+   <header>
+      <div class="nav">
+        <img src="images/brand/logo-colored.svg" alt="" />
+
+
+        <div class="icons">
+          <div>
+            <img src="images/icons/profile.svg" alt="" />
+            <p>Profile</p>
+          </div>
+          <div>
+            <img src="images/icons/message.svg" alt="" />
+            <p>Message</p>
+          </div>
+          <div>
+            <img src="images/icons/orders.svg" alt="" />
+            <p>Orders</p>
+          </div>
+          <div>
+            <img src="images/icons/cart.svg" alt="" />
+            <p>My Cart</p>
+          </div>
+        </div>
+      </div>
+
+    <!-- Main Content -->
+    <div class="container main-content">
+        <!-- Shopping Cart Section -->
+        <div class="cart-section">
+            <h2>My cart (3)</h2>
+            
+            <div class="cart-container">
+                <div class="cart-items">
+                    <!-- Cart Item 1 -->
+                    <div class="cart-item">
+                        <img src="images/photos/greenshirt.svg" alt="T-shirt" class="item-image">
+                        <div class="item-details">
+                            <h4>T-shirts with multiple colors, for men and lady</h4>
+                            <p class="item-brand">Brand: <span>Adidas</span> | Material: <span>Cotton</span></p>
+                            <p class="item-color">Color: <span>Blue Green</span></p>
+                            <div class="item-actions">
+                                <a href="#" class="remove-btn">Remove</a>
+                                <a href="#" class="save-btn">Save for later</a>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-quantity">Qty: 8</div>
+                            <div class="item-price">$78.99</div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 2 -->
+                    <div class="cart-item">
+                        <img src="images/photos/white-shirt.svg" alt="T-shirt" class="item-image">
+                        <div class="item-details">
+                            <h4>T-shirts with multiple colors, for men and lady</h4>
+                            <p class="item-brand">Brand: <span>Casual</span> | Material: <span>Cotton</span></p>
+                            <p class="item-color">Color: <span>Blue Denim Light</span></p>
+                            <div class="item-actions">
+                                <a href="#" class="remove-btn">Remove</a>
+                                <a href="#" class="save-btn">Save for later</a>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-quantity">Qty: 3</div>
+                            <div class="item-price">$39.00</div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Item 3 -->
+                    <div class="cart-item">
+                        <img src="images/photos/gray-shirt.svg"T-shirt" class="item-image">
+                        <div class="item-details">
+                            <h4>T-shirts with multiple colors, for men and lady</h4>
+                            <p class="item-brand">Brand: <span>Casual</span> | Material: <span>Cotton</span></p>
+                            <p class="item-color">Color: <span>Blue Cotton</span></p>
+                            <div class="item-actions">
+                                <a href="#" class="remove-btn">Remove</a>
+                                <a href="#" class="save-btn">Save for later</a>
+                            </div>
+                        </div>
+                        <div class="item-right">
+                            <div class="item-quantity">Qty: 1</div>
+                            <div class="item-price">$179.00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cart-footer">
+                    <button class="back-to-shop">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Shop
+                    </button>
+                    <a href="#" class="remove-all">Remove all</a>
+                </div>
+            </div>
+
+            <!-- Support Options -->
+            <div class="support-options">
+                <div class="support-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <strong>Secure payment</strong>
+                        <p>Have you ever finally just</p>
+                    </div>
+                </div>
+                <div class="support-item">
+                    <i class="fas fa-headset"></i>
+                    <div>
+                        <strong>Customer support</strong>
+                        <p>Have you ever finally just</p>
+                    </div>
+                </div>
+                <div class="support-item">
+                    <i class="fas fa-truck"></i>
+                    <div>
+                        <strong>Free delivery</strong>
+                        <p>Have you ever finally just</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <div class="summary-card">
+                <div class="coupon-section">
+                    <div class="coupon-header">
+                        <span>Have a coupon?</span>
+                    </div>
+                    <div class="coupon-input">
+                        <input type="text" placeholder="Add Coupon">
+                        <button>Apply</button>
+                    </div>
+                </div>
+
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>$1,403.97</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Discount:</span>
+                        <span>$60.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span>$14.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span><strong>Total:</strong></span>
+                        <span><strong>$1357.97</strong></span>
+                    </div>
+                </div>
+
+                <button class="checkout-btn">Checkout</button>
+                
+                <div class="payment-methods">
+                    <div class="payment-icon mastercard">MC</div>
+                    <div class="payment-icon visa">V</div>
+                    <div class="payment-icon paypal">PP</div>
+                    <div class="payment-icon applepay">AP</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved for Later Section -->
+    <div class="container">
+        <section class="saved-section">
+            <h3>Saved for later</h3>
+            <div class="saved-items">
+                <div class="saved-item">
+                    <img src="images/photos/tablet.svg" alt="Tablet">
+                    <div class="saved-info">
+                        <div class="saved-price">$99.50</div>
+                        <p>GoPro HERO9 4K Action Camera - Black</p>
+                        <button class="move-to-cart">📋 Move to cart</button>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <img src="images/photos/blue-iphone.svg" alt="Phone">
+                    <div class="saved-info">
+                        <div class="saved-price">$99.50</div>
+                        <p>GoPro HERO9 4K Action Camera - Black</p>
+                        <button class="move-to-cart">📋 Move to cart</button>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <img src="images/photos/watch.svg" alt="Watch">
+                    <div class="saved-info">
+                        <div class="saved-price">$99.50</div>
+                        <p>GoPro HERO9 4K Action Camera - Black</p>
+                        <button class="move-to-cart">📋 Move to cart</button>
+                    </div>
+                </div>
+                <div class="saved-item">
+                    <img src="images/photos/laptops.svg" alt="Laptop">
+                    <div class="saved-info">
+                        <div class="saved-price">$99.50</div>
+                        <p>GoPro HERO9 4K Action Camera - Black</p>
+                        <button class="move-to-cart">📋 Move to cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Discount Banner -->
+    <div class="discount-banner">
+        <div class="container">
+            <span>Super discount on more than 100 USD</span>
+            <button class="shop-now-btn">Shop now</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+     <footer>
+      
+      <div class="footer-main">
+        <div class="footer-brand">
+          <img src="images/Brand/logo-colored.svg" alt="" />
+          <p>
+            Best information about the company gies here but now lorem ipsum is
+          </p>
+          <div class="social-icons">
+            <a href="https://www.facebook.com/" target="_blank"
+              ><img src="images/icons/facebook.svg" alt=""
+            /></a>
+            <a href="https://x.com/" target="_blank"
+              ><img src="images/icons/twitter.svg" alt=""
+            /></a>
+            <a href="https://www.linkedin.com/" target="_blank"
+              ><img src="images/icons/linkedin.svg" alt=""
+            /></a>
+            <a href="https://www.instagram.com/" target="_blank"
+              ><img src="images/icons/instagram.svg" alt=""
+            /></a>
+            <a href="https://www.youtube.com/" target="_blank"
+              ><img src="images/icons/youtube.svg" alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <div>
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>Partnership</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>Information</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+          <div>
+            <h4>For users</h4>
+            <a href="#">About Us</a>
+            <a href="#">Find store</a>
+            <a href="#">Categories</a>
+            <a href="#">Blogs</a>
+          </div>
+
+          <div class="stores">
+            <h4>Get app</h4>
+            <img src="images/icons/app-store.svg" alt="" />
+            <img src="images/icons/google-play.svg" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>@ 2023 Ecommerce.</p>
+        <div class="lang-select">
+          <img src="images/icons/usa-flag.svg" alt="" />
+        </div>
+      </div>
+    </footer>
+    
+</body>
+</html>
