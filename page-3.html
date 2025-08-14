@@ -5,6 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ecommerce</title>
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Additional styles for JavaScript features */
+      .tile-wishlist.active {
+        color: red;
+      }
+      .product-tile.hidden {
+        display: none;
+      }
+      .cart-count {
+        background: red;
+        color: white;
+        border-radius: 50%;
+        padding: 2px 6px;
+        font-size: 12px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+      }
+      .icons > div {
+        position: relative;
+      }
+      .filter-title.collapsed span {
+        transform: rotate(-90deg);
+        transition: transform 0.3s ease;
+      }
+      .filter-list.hidden {
+        display: none;
+      }
+      .toast {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        padding: 16px;
+        border-radius: 4px;
+        display: none;
+        z-index: 1000;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      .view-btn.active {
+        background: #007bff;
+        color: white;
+      }
+      .product-gallery.list-view {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .product-gallery.list-view .product-tile {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding: 20px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+      }
+      .product-gallery.list-view .product-tile img {
+        width: 150px;
+        height: 120px;
+        object-fit: cover;
+        margin-right: 20px;
+      }
+      .add-to-cart-btn {
+        background: #007bff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+      }
+      .add-to-cart-btn:hover {
+        background: #0056b3;
+      }
+      .add-to-cart-btn.added {
+        background: #28a745;
+      }
+      .product-tile {
+        position: relative;
+        transition: transform 0.2s ease;
+      }
+      .product-tile:hover {
+        transform: translateY(-5px);
+      }
+      .filter-title {
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .filter-title span {
+        transition: transform 0.3s ease;
+      }
+    </style>
   </head>
   <body>
     <div class="main-container">
@@ -13,11 +110,11 @@
         <img src="images/brand/logo-colored.svg" alt="" />
 
         <div class="search-bar">
-          <input type="text" placeholder="Search" name="" id="" />
+          <input type="text" placeholder="Search" name="" id="search-input" />
           <select name="" id="">
             <option value="">All Category</option>
           </select>
-          <button>Search</button>
+          <button onclick="performSearch()">Search</button>
         </div>
         <div class="icons">
           <div>
@@ -32,9 +129,10 @@
             <img src="images/icons/orders.svg" alt="" />
             <p>Orders</p>
           </div>
-          <div>
+          <div id="cart-icon">
             <img src="images/icons/cart.svg" alt="" />
             <p>My Cart</p>
+            <span class="cart-count" id="cart-count" style="display: none;">0</span>
           </div>
         </div>
       </div>
@@ -56,191 +154,206 @@
         </div>
       </div>
     </header>
+    
     <div class="product-toolbar">
-  <!-- Breadcrumbs -->
-  <div class="toolbar-top">
-    <nav class="breadcrumbs">
-      <a href="#">Home</a> &gt;
-      <a href="#">Clothings</a> &gt;
-      <a href="#">Men’s wear</a> &gt;
-      <span>Summer clothing</span>
-    </nav>
-  </div>
+      <!-- Breadcrumbs -->
+      <div class="toolbar-top">
+        <nav class="breadcrumbs">
+          <a href="#">Home</a> &gt;
+          <a href="#">Clothings</a> &gt;
+          <a href="#">Men's wear</a> &gt;
+          <span>Summer clothing</span>
+        </nav>
+      </div>
 
-  <!-- Sorting & View Options -->
-  <div class="toolbar-controls">
-    <!-- Item Count -->
-    <div class="item-count">
-      <strong>12,911</strong> items in <strong>Mobile accessory</strong>
-    </div>
+      <!-- Sorting & View Options -->
+      <div class="toolbar-controls">
+        <!-- Item Count -->
+        <div class="item-count">
+          <strong id="item-count">9</strong> items in <strong>Mobile accessory</strong>
+        </div>
 
-    <!-- Filters and View Mode -->
-    <div class="toolbar-actions">
-      <label class="verified-only">
-        <input type="checkbox" checked />
-        Verified only
-      </label>
+        <!-- Filters and View Mode -->
+        <div class="toolbar-actions">
+          <label class="verified-only">
+            <input type="checkbox" checked onchange="toggleVerifiedOnly()" />
+            Verified only
+          </label>
 
-      <select class="sort-select">
-        <option value="featured">Featured</option>
-        <option value="lowest">Lowest Price</option>
-        <option value="highest">Highest Price</option>
-      </select>
+          <select class="sort-select" onchange="sortProducts(this.value)">
+            <option value="featured">Featured</option>
+            <option value="lowest">Lowest Price</option>
+            <option value="highest">Highest Price</option>
+            <option value="rating">Best Rating</option>
+          </select>
 
-      <div class="view-toggle">
-        <button class="view-btn active" aria-label="Grid View">🔳</button>
-        <button class="view-btn" aria-label="List View">📋</button>
+          <div class="view-toggle">
+            <button class="view-btn active" onclick="setGridView()" aria-label="Grid View">📳</button>
+            <button class="view-btn" onclick="setListView()" aria-label="List View">📋</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="main-content">
-    <section class="shop-layout">
-  <!-- Sidebar -->
-  <aside class="filter-sidebar">
-    <!-- Category -->
-    <div class="filter-section">
-      <h4 class="filter-title">Category <span>▾</span></h4>
-      <ul class="filter-list">
-        <li><input type="checkbox" /> Mobile accessory</li>
-        <li><input type="checkbox" /> Electronics</li>
-        <li><input type="checkbox" /> Smartphones</li>
-        <li><input type="checkbox" /> Modern tech</li>
-        <li><a href="#">See all</a></li>
-      </ul>
+
+    <div class="main-content">
+      <section class="shop-layout">
+        <!-- Sidebar -->
+        <aside class="filter-sidebar">
+          <!-- Category -->
+          <div class="filter-section">
+            <h4 class="filter-title" onclick="toggleFilter(this)">Category <span>▾</span></h4>
+            <ul class="filter-list">
+              <li><input type="checkbox" onchange="applyFilters()" /> Mobile accessory</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Electronics</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Smartphones</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Modern tech</li>
+              <li><a href="#">See all</a></li>
+            </ul>
+          </div>
+
+          <!-- Brands -->
+          <div class="filter-section">
+            <h4 class="filter-title" onclick="toggleFilter(this)">Brands <span>▾</span></h4>
+            <ul class="filter-list">
+              <li><input type="checkbox" checked onchange="applyFilters()" /> Samsung</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Apple</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Huawei</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Poco</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Lenovo</li>
+              <li><a href="#">See all</a></li>
+            </ul>
+          </div>
+
+          <!-- Features -->
+          <div class="filter-section">
+            <h4 class="filter-title" onclick="toggleFilter(this)">Features <span>▾</span></h4>
+            <ul class="filter-list">
+              <li><input type="checkbox" checked onchange="applyFilters()" /> Metallic</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Plastic cover</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> 8GB Ram</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Super power</li>
+              <li><input type="checkbox" onchange="applyFilters()" /> Large Memory</li>
+              <li><a href="#">See all</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <main class="product-gallery" id="product-gallery">
+          <div class="product-tile" data-price="99.50" data-rating="7.5" data-name="Red iPhone">
+            <img src="images/photos/apple.svg" alt="Red iPhone" />
+            <div class="tile-info">
+              <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+              <div class="tile-rating">⭐ 7.5</div>
+              <p>Red iPhone 14 Pro Max</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Red iPhone 14 Pro Max', 99.50)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="99.50" data-rating="5.9" data-name="Blue iPhone">
+            <img src="images/photos/blue-iphone.svg" alt="Blue iPhone" />
+            <div class="tile-info">
+              <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+              <div class="tile-rating">⭐ 5.9</div>
+              <p>Blue iPhone 14 Pro</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Blue iPhone 14 Pro', 99.50)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="99.50" data-rating="7.5" data-name="Android Phone">
+            <img src="images/photos/phone.svg" alt="Android Phone" />
+            <div class="tile-info">
+              <div class="tile-price">$99.50</div>
+              <div class="tile-rating">⭐ 7.5</div>
+              <p>Samsung Galaxy S23</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Samsung Galaxy S23', 99.50)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="99.50" data-rating="7.5" data-name="Tablet">
+            <img src="images/photos/android-phone.svg" alt="Tablet" />
+            <div class="tile-info">
+              <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+              <div class="tile-rating">⭐ 7.5</div>
+              <p>Android Tablet Pro</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Android Tablet Pro', 99.50)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="299.99" data-rating="8.5" data-name="Camera">
+            <img src="images/photos/camera.svg" alt="Camera" />
+            <div class="tile-info">
+              <div class="tile-price">$299.99 <span class="old-price">$399.00</span></div>
+              <div class="tile-rating">⭐ 8.5</div>
+              <p>Professional DSLR Camera</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Professional DSLR Camera', 299.99)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="99.50" data-rating="7.5" data-name="Dark Blue Phone">
+            <img src="images/photos/blue-iphone.svg" alt="Dark Blue Phone" />
+            <div class="tile-info">
+              <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
+              <div class="tile-rating">⭐ 7.5</div>
+              <p>Dark Blue iPhone 14</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Dark Blue iPhone 14', 99.50)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="899.99" data-rating="9.2" data-name="Laptop">
+            <img src="images/photos/laptops.svg" alt="Laptop" />
+            <div class="tile-info">
+              <div class="tile-price">$899.99 <span class="old-price">$1200.00</span></div>
+              <div class="tile-rating">⭐ 9.2</div>
+              <p>Gaming Laptop Ultra</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Gaming Laptop Ultra', 899.99)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="199.99" data-rating="8.1" data-name="Smart Watch">
+            <img src="images/photos/watch.svg" alt="Smart Watch" />
+            <div class="tile-info">
+              <div class="tile-price">$199.99 <span class="old-price">$299.00</span></div>
+              <div class="tile-rating">⭐ 8.1</div>
+              <p>Smart Watch Series 9</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Smart Watch Series 9', 199.99)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+
+          <div class="product-tile" data-price="149.99" data-rating="7.8" data-name="Headphones">
+            <img src="images/photos/h1.svg" alt="Headphones" />
+            <div class="tile-info">
+              <div class="tile-price">$149.99</div>
+              <div class="tile-rating">⭐ 7.8</div>
+              <p>Wireless Headphones Pro</p>
+              <button class="add-to-cart-btn" onclick="addToCart(this, 'Wireless Headphones Pro', 149.99)">Add to Cart</button>
+            </div>
+            <div class="tile-wishlist" onclick="toggleWishlist(this)">🤍</div>
+          </div>
+        </main>
+      </section>
     </div>
 
-    <!-- Brands -->
-    <div class="filter-section">
-      <h4 class="filter-title">Brands <span>▾</span></h4>
-      <ul class="filter-list">
-        <li><input type="checkbox" checked /> Samsung</li>
-        <li><input type="checkbox" /> Apple</li>
-        <li><input type="checkbox" /> Huawei</li>
-        <li><input type="checkbox" /> Poco</li>
-        <li><input type="checkbox" /> Lenovo</li>
-        <li><a href="#">See all</a></li>
-      </ul>
-    </div>
+    <!-- Toast notification -->
+    <div id="toast" class="toast"></div>
 
-    <!-- Features -->
-    <div class="filter-section">
-      <h4 class="filter-title">Features <span>▾</span></h4>
-      <ul class="filter-list">
-        <li><input type="checkbox" checked /> Metallic</li>
-        <li><input type="checkbox" /> Plastic cover</li>
-        <li><input type="checkbox" /> 8GB Ram</li>
-        <li><input type="checkbox" /> Super power</li>
-        <li><input type="checkbox" /> Large Memory</li>
-        <li><a href="#">See all</a></li>
-      </ul>
-    </div>
-  </aside>
-
-  <!-- Product Grid -->
-  <main class="product-gallery">
-    <div class="product-tile">
-      <img src="images/photos/apple.svg" alt="Red iPhone" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/blue-iphone.svg" alt="Blue iPhone" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 5.9</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/phone.svg" alt="Android Phone" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50</div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/android-phone.svg" alt="Tablet" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/camera.svg" alt="Camera" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/blue-iphone.svg" alt="Dark Blue Phone" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/laptops.svg" alt="Laptop" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/watch.svg" alt="Smart Watch" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50 <span class="old-price">$1128.00</span></div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-
-    <div class="product-tile">
-      <img src="images/photos/h1.svg" alt="H1 Product" />
-      <div class="tile-info">
-        <div class="tile-price">$99.50</div>
-        <div class="tile-rating">⭐ 7.5</div>
-        <p>GoPro HERO6 4K Action Camera - Black</p>
-      </div>
-      <div class="tile-wishlist">🤍</div>
-    </div>
-    </div>
-  </main>
-</section>
-
-     <footer>
+    <footer>
       <div class="newsletter">
         <h3>Subscribe On Our Newsletter</h3>
         <p>
           Get daily news on upcoming offers from many suppliers all over the
           world
         </p>
-        <form>
-          <input type="email" placeholder="Email" name="" id="" />
+        <form onsubmit="subscribeNewsletter(event)">
+          <input type="email" placeholder="Email" name="email" id="newsletter-email" required />
           <button type="submit">Subscribe</button>
         </form>
       </div>
@@ -312,5 +425,188 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Cart functionality
+      let cartCount = 0;
+      let cartItems = [];
+      
+      function addToCart(button, productName, price) {
+        cartCount++;
+        cartItems.push({ name: productName, price: price });
+        updateCartDisplay();
+        showToast(`${productName} added to cart!`);
+        
+        // Add visual feedback
+        button.classList.add('added');
+        const originalText = button.textContent;
+        button.textContent = 'Added!';
+        setTimeout(() => {
+          button.classList.remove('added');
+          button.textContent = originalText;
+        }, 1500);
+      }
+      
+      function updateCartDisplay() {
+        const cartElement = document.getElementById('cart-count');
+        if (cartCount > 0) {
+          cartElement.style.display = 'block';
+          cartElement.textContent = cartCount;
+        } else {
+          cartElement.style.display = 'none';
+        }
+      }
+      
+      // Wishlist functionality
+      function toggleWishlist(element) {
+        if (element.textContent === '🤍') {
+          element.textContent = '❤️';
+          element.classList.add('active');
+          showToast('Added to wishlist!');
+        } else {
+          element.textContent = '🤍';
+          element.classList.remove('active');
+          showToast('Removed from wishlist!');
+        }
+      }
+      
+      // Toast notification
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.style.display = 'block';
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 3000);
+      }
+      
+      // Search functionality
+      function performSearch() {
+        const searchTerm = document.getElementById('search-input').value.toLowerCase();
+        const products = document.querySelectorAll('.product-tile');
+        let visibleCount = 0;
+        
+        products.forEach(product => {
+          const productName = product.getAttribute('data-name').toLowerCase();
+          const productText = product.textContent.toLowerCase();
+          
+          if (productName.includes(searchTerm) || productText.includes(searchTerm)) {
+            product.style.display = 'block';
+            product.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            product.style.display = 'none';
+            product.classList.add('hidden');
+          }
+        });
+        
+        updateItemCount(visibleCount);
+        if (searchTerm) {
+          showToast(`Found ${visibleCount} items`);
+        }
+      }
+      
+      // Sort functionality
+      function sortProducts(sortBy) {
+        const container = document.getElementById('product-gallery');
+        const products = Array.from(container.querySelectorAll('.product-tile:not(.hidden)'));
+        
+        products.sort((a, b) => {
+          if (sortBy === 'lowest') {
+            return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+          } else if (sortBy === 'highest') {
+            return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+          } else if (sortBy === 'rating') {
+            return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
+          }
+          // Default to featured (original order)
+          return 0;
+        });
+        
+        // Re-append sorted products
+        products.forEach(product => container.appendChild(product));
+        showToast(`Products sorted by ${sortBy}`);
+      }
+      
+      // View toggle functionality
+      function setGridView() {
+        document.getElementById('product-gallery').classList.remove('list-view');
+        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        showToast('Grid view enabled');
+      }
+      
+      function setListView() {
+        document.getElementById('product-gallery').classList.add('list-view');
+        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        showToast('List view enabled');
+      }
+      
+      // Filter toggle functionality
+      function toggleFilter(heading) {
+        const filterList = heading.nextElementSibling;
+        const arrow = heading.querySelector('span');
+        
+        if (filterList.classList.contains('hidden')) {
+          filterList.classList.remove('hidden');
+          arrow.textContent = '▾';
+          heading.classList.remove('collapsed');
+        } else {
+          filterList.classList.add('hidden');
+          arrow.textContent = '▸';
+          heading.classList.add('collapsed');
+        }
+      }
+      
+      // Apply filters
+      function applyFilters() {
+        // Simulate filter application
+        const checkedFilters = document.querySelectorAll('.filter-list input:checked').length;
+        showToast(`${checkedFilters} filters applied`);
+        updateItemCount(document.querySelectorAll('.product-tile:not(.hidden)').length);
+      }
+      
+      function toggleVerifiedOnly() {
+        showToast('Verified filter toggled!');
+      }
+      
+      // Update item count
+      function updateItemCount(count) {
+        document.getElementById('item-count').textContent = count;
+      }
+      
+      // Newsletter subscription
+      function subscribeNewsletter(event) {
+        event.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        showToast(`Subscribed with email: ${email}`);
+        document.getElementById('newsletter-email').value = '';
+      }
+      
+      // Add search on Enter key
+      document.getElementById('search-input').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+          performSearch();
+        }
+      });
+      
+      // Add hover effects for product tiles
+      document.querySelectorAll('.product-tile').forEach(tile => {
+        tile.addEventListener('mouseenter', function() {
+          this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+        });
+        
+        tile.addEventListener('mouseleave', function() {
+          this.style.boxShadow = 'none';
+        });
+      });
+      
+      // Initialize page
+      document.addEventListener('DOMContentLoaded', function() {
+        updateItemCount(9);
+        showToast('Welcome to our store!');
+      });
+    </script>
   </body>
 </html>

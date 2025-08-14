@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brand - Shopping Cart</title>
-    <link rel="stylesheet" href="page-5.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="page-5.css">
 </head>
 <body>
    <header>
       <div class="nav">
         <img src="images/brand/logo-colored.svg" alt="" />
-
 
         <div class="icons">
           <div>
@@ -28,80 +27,96 @@
           </div>
           <div>
             <img src="images/icons/cart.svg" alt="" />
-            <p>My Cart</p>
+            <p id="cart-count">My Cart (3)</p>
           </div>
         </div>
       </div>
+    </header>
 
     <!-- Main Content -->
     <div class="container main-content">
         <!-- Shopping Cart Section -->
         <div class="cart-section">
-            <h2>My cart (3)</h2>
+            <h2 id="cart-header">My cart (3)</h2>
             
             <div class="cart-container">
-                <div class="cart-items">
+                <div class="cart-items" id="cart-items">
                     <!-- Cart Item 1 -->
-                    <div class="cart-item">
+                    <div class="cart-item" data-id="1" data-price="78.99">
                         <img src="images/photos/greenshirt.svg" alt="T-shirt" class="item-image">
                         <div class="item-details">
                             <h4>T-shirts with multiple colors, for men and lady</h4>
                             <p class="item-brand">Brand: <span>Adidas</span> | Material: <span>Cotton</span></p>
                             <p class="item-color">Color: <span>Blue Green</span></p>
                             <div class="item-actions">
-                                <a href="#" class="remove-btn">Remove</a>
-                                <a href="#" class="save-btn">Save for later</a>
+                                <a href="#" class="remove-btn" onclick="removeItem(1)">Remove</a>
+                                <a href="#" class="save-btn" onclick="saveForLater(1)">Save for later</a>
                             </div>
                         </div>
                         <div class="item-right">
-                            <div class="item-quantity">Qty: 8</div>
-                            <div class="item-price">$78.99</div>
+                            <div class="item-quantity">
+                                Qty: 
+                                <button onclick="changeQuantity(1, -1)">-</button>
+                                <span id="qty-1">8</span>
+                                <button onclick="changeQuantity(1, 1)">+</button>
+                            </div>
+                            <div class="item-price" id="price-1">$78.99</div>
                         </div>
                     </div>
 
                     <!-- Cart Item 2 -->
-                    <div class="cart-item">
+                    <div class="cart-item" data-id="2" data-price="39.00">
                         <img src="images/photos/white-shirt.svg" alt="T-shirt" class="item-image">
                         <div class="item-details">
                             <h4>T-shirts with multiple colors, for men and lady</h4>
                             <p class="item-brand">Brand: <span>Casual</span> | Material: <span>Cotton</span></p>
                             <p class="item-color">Color: <span>Blue Denim Light</span></p>
                             <div class="item-actions">
-                                <a href="#" class="remove-btn">Remove</a>
-                                <a href="#" class="save-btn">Save for later</a>
+                                <a href="#" class="remove-btn" onclick="removeItem(2)">Remove</a>
+                                <a href="#" class="save-btn" onclick="saveForLater(2)">Save for later</a>
                             </div>
                         </div>
                         <div class="item-right">
-                            <div class="item-quantity">Qty: 3</div>
-                            <div class="item-price">$39.00</div>
+                            <div class="item-quantity">
+                                Qty: 
+                                <button onclick="changeQuantity(2, -1)">-</button>
+                                <span id="qty-2">3</span>
+                                <button onclick="changeQuantity(2, 1)">+</button>
+                            </div>
+                            <div class="item-price" id="price-2">$39.00</div>
                         </div>
                     </div>
 
                     <!-- Cart Item 3 -->
-                    <div class="cart-item">
-                        <img src="images/photos/gray-shirt.svg"T-shirt" class="item-image">
+                    <div class="cart-item" data-id="3" data-price="179.00">
+                        <img src="images/photos/gray-shirt.svg" alt="T-shirt" class="item-image">
                         <div class="item-details">
                             <h4>T-shirts with multiple colors, for men and lady</h4>
                             <p class="item-brand">Brand: <span>Casual</span> | Material: <span>Cotton</span></p>
                             <p class="item-color">Color: <span>Blue Cotton</span></p>
                             <div class="item-actions">
-                                <a href="#" class="remove-btn">Remove</a>
-                                <a href="#" class="save-btn">Save for later</a>
+                                <a href="#" class="remove-btn" onclick="removeItem(3)">Remove</a>
+                                <a href="#" class="save-btn" onclick="saveForLater(3)">Save for later</a>
                             </div>
                         </div>
                         <div class="item-right">
-                            <div class="item-quantity">Qty: 1</div>
-                            <div class="item-price">$179.00</div>
+                            <div class="item-quantity">
+                                Qty: 
+                                <button onclick="changeQuantity(3, -1)">-</button>
+                                <span id="qty-3">1</span>
+                                <button onclick="changeQuantity(3, 1)">+</button>
+                            </div>
+                            <div class="item-price" id="price-3">$179.00</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="cart-footer">
-                    <button class="back-to-shop">
+                    <button class="back-to-shop" onclick="backToShop()">
                         <i class="fas fa-arrow-left"></i>
                         Back to Shop
                     </button>
-                    <a href="#" class="remove-all">Remove all</a>
+                    <a href="#" class="remove-all" onclick="removeAll()">Remove all</a>
                 </div>
             </div>
 
@@ -139,31 +154,31 @@
                         <span>Have a coupon?</span>
                     </div>
                     <div class="coupon-input">
-                        <input type="text" placeholder="Add Coupon">
-                        <button>Apply</button>
+                        <input type="text" id="coupon-input" placeholder="Add Coupon">
+                        <button onclick="applyCoupon()">Apply</button>
                     </div>
                 </div>
 
                 <div class="summary-details">
                     <div class="summary-row">
                         <span>Subtotal:</span>
-                        <span>$1,403.97</span>
+                        <span id="subtotal">$1,403.97</span>
                     </div>
                     <div class="summary-row">
                         <span>Discount:</span>
-                        <span>$60.00</span>
+                        <span id="discount">$60.00</span>
                     </div>
                     <div class="summary-row">
                         <span>Tax:</span>
-                        <span>$14.00</span>
+                        <span id="tax">$14.00</span>
                     </div>
                     <div class="summary-row total">
                         <span><strong>Total:</strong></span>
-                        <span><strong>$1357.97</strong></span>
+                        <span><strong id="total">$1357.97</strong></span>
                     </div>
                 </div>
 
-                <button class="checkout-btn">Checkout</button>
+                <button class="checkout-btn" onclick="checkout()">Checkout</button>
                 
                 <div class="payment-methods">
                     <div class="payment-icon mastercard">MC</div>
@@ -179,37 +194,37 @@
     <div class="container">
         <section class="saved-section">
             <h3>Saved for later</h3>
-            <div class="saved-items">
-                <div class="saved-item">
+            <div class="saved-items" id="saved-items">
+                <div class="saved-item" data-id="saved-1" data-price="99.50">
                     <img src="images/photos/tablet.svg" alt="Tablet">
                     <div class="saved-info">
                         <div class="saved-price">$99.50</div>
                         <p>GoPro HERO9 4K Action Camera - Black</p>
-                        <button class="move-to-cart">📋 Move to cart</button>
+                        <button class="move-to-cart" onclick="moveToCart('saved-1')">📋 Move to cart</button>
                     </div>
                 </div>
-                <div class="saved-item">
+                <div class="saved-item" data-id="saved-2" data-price="99.50">
                     <img src="images/photos/blue-iphone.svg" alt="Phone">
                     <div class="saved-info">
                         <div class="saved-price">$99.50</div>
                         <p>GoPro HERO9 4K Action Camera - Black</p>
-                        <button class="move-to-cart">📋 Move to cart</button>
+                        <button class="move-to-cart" onclick="moveToCart('saved-2')">📋 Move to cart</button>
                     </div>
                 </div>
-                <div class="saved-item">
+                <div class="saved-item" data-id="saved-3" data-price="99.50">
                     <img src="images/photos/watch.svg" alt="Watch">
                     <div class="saved-info">
                         <div class="saved-price">$99.50</div>
                         <p>GoPro HERO9 4K Action Camera - Black</p>
-                        <button class="move-to-cart">📋 Move to cart</button>
+                        <button class="move-to-cart" onclick="moveToCart('saved-3')">📋 Move to cart</button>
                     </div>
                 </div>
-                <div class="saved-item">
+                <div class="saved-item" data-id="saved-4" data-price="99.50">
                     <img src="images/photos/laptops.svg" alt="Laptop">
                     <div class="saved-info">
                         <div class="saved-price">$99.50</div>
                         <p>GoPro HERO9 4K Action Camera - Black</p>
-                        <button class="move-to-cart">📋 Move to cart</button>
+                        <button class="move-to-cart" onclick="moveToCart('saved-4')">📋 Move to cart</button>
                     </div>
                 </div>
             </div>
@@ -220,13 +235,12 @@
     <div class="discount-banner">
         <div class="container">
             <span>Super discount on more than 100 USD</span>
-            <button class="shop-now-btn">Shop now</button>
+            <button class="shop-now-btn" onclick="shopNow()">Shop now</button>
         </div>
     </div>
 
     <!-- Footer -->
-     <footer>
-      
+    <footer>
       <div class="footer-main">
         <div class="footer-brand">
           <img src="images/Brand/logo-colored.svg" alt="" />
@@ -295,6 +309,231 @@
         </div>
       </div>
     </footer>
-    
+
+    <script>
+        // Cart data structure
+        let cartItems = {
+            1: { name: "T-shirts with multiple colors, for men and lady", price: 78.99, quantity: 8, brand: "Adidas", color: "Blue Green" },
+            2: { name: "T-shirts with multiple colors, for men and lady", price: 39.00, quantity: 3, brand: "Casual", color: "Blue Denim Light" },
+            3: { name: "T-shirts with multiple colors, for men and lady", price: 179.00, quantity: 1, brand: "Casual", color: "Blue Cotton" }
+        };
+
+        let savedItems = {
+            'saved-1': { name: "GoPro HERO9 4K Action Camera - Black", price: 99.50, image: "images/photos/tablet.svg" },
+            'saved-2': { name: "GoPro HERO9 4K Action Camera - Black", price: 99.50, image: "images/photos/blue-iphone.svg" },
+            'saved-3': { name: "GoPro HERO9 4K Action Camera - Black", price: 99.50, image: "images/photos/watch.svg" },
+            'saved-4': { name: "GoPro HERO9 4K Action Camera - Black", price: 99.50, image: "images/photos/laptops.svg" }
+        };
+
+        let discountAmount = 60.00;
+        let taxAmount = 14.00;
+
+        // Function to update cart totals
+        function updateCartTotals() {
+            let subtotal = 0;
+            for (let id in cartItems) {
+                subtotal += cartItems[id].price * cartItems[id].quantity;
+            }
+
+            const total = subtotal - discountAmount + taxAmount;
+
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+            document.getElementById('discount').textContent = '$' + discountAmount.toFixed(2);
+            document.getElementById('tax').textContent = '$' + taxAmount.toFixed(2);
+
+            // Update cart count
+            const totalItems = Object.keys(cartItems).length;
+            document.getElementById('cart-header').textContent = `My cart (${totalItems})`;
+            document.getElementById('cart-count').textContent = `My Cart (${totalItems})`;
+        }
+
+        // Function to change item quantity
+        function changeQuantity(itemId, change) {
+            if (cartItems[itemId]) {
+                cartItems[itemId].quantity += change;
+                if (cartItems[itemId].quantity <= 0) {
+                    cartItems[itemId].quantity = 1; // Minimum quantity is 1
+                }
+                
+                document.getElementById(`qty-${itemId}`).textContent = cartItems[itemId].quantity;
+                updateCartTotals();
+            }
+        }
+
+        // Function to remove item from cart
+        function removeItem(itemId) {
+            if (confirm('Are you sure you want to remove this item from your cart?')) {
+                delete cartItems[itemId];
+                document.querySelector(`[data-id="${itemId}"]`).remove();
+                updateCartTotals();
+            }
+        }
+
+        // Function to save item for later
+        function saveForLater(itemId) {
+            if (cartItems[itemId]) {
+                // Add to saved items
+                const item = cartItems[itemId];
+                const savedId = `saved-${Date.now()}`;
+                savedItems[savedId] = {
+                    name: item.name,
+                    price: item.price,
+                    image: "images/photos/greenshirt.svg" // Default image
+                };
+
+                // Create saved item element
+                const savedItemsContainer = document.getElementById('saved-items');
+                const savedItemDiv = document.createElement('div');
+                savedItemDiv.className = 'saved-item';
+                savedItemDiv.setAttribute('data-id', savedId);
+                savedItemDiv.setAttribute('data-price', item.price);
+                savedItemDiv.innerHTML = `
+                    <img src="${savedItems[savedId].image}" alt="Item">
+                    <div class="saved-info">
+                        <div class="saved-price">$${item.price.toFixed(2)}</div>
+                        <p>${item.name}</p>
+                        <button class="move-to-cart" onclick="moveToCart('${savedId}')">📋 Move to cart</button>
+                    </div>
+                `;
+                savedItemsContainer.appendChild(savedItemDiv);
+
+                // Remove from cart
+                delete cartItems[itemId];
+                document.querySelector(`[data-id="${itemId}"]`).remove();
+                updateCartTotals();
+
+                alert('Item saved for later!');
+            }
+        }
+
+        // Function to move saved item back to cart
+        function moveToCart(savedId) {
+            if (savedItems[savedId]) {
+                const item = savedItems[savedId];
+                const newCartId = Date.now();
+                
+                cartItems[newCartId] = {
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1,
+                    brand: "Brand",
+                    color: "Color"
+                };
+
+                // Create cart item element
+                const cartItemsContainer = document.getElementById('cart-items');
+                const cartItemDiv = document.createElement('div');
+                cartItemDiv.className = 'cart-item';
+                cartItemDiv.setAttribute('data-id', newCartId);
+                cartItemDiv.setAttribute('data-price', item.price);
+                cartItemDiv.innerHTML = `
+                    <img src="${item.image}" alt="Item" class="item-image">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p class="item-brand">Brand: <span>Brand</span> | Material: <span>Cotton</span></p>
+                        <p class="item-color">Color: <span>Color</span></p>
+                        <div class="item-actions">
+                            <a href="#" class="remove-btn" onclick="removeItem(${newCartId})">Remove</a>
+                            <a href="#" class="save-btn" onclick="saveForLater(${newCartId})">Save for later</a>
+                        </div>
+                    </div>
+                    <div class="item-right">
+                        <div class="item-quantity">
+                            Qty: 
+                            <button onclick="changeQuantity(${newCartId}, -1)">-</button>
+                            <span id="qty-${newCartId}">1</span>
+                            <button onclick="changeQuantity(${newCartId}, 1)">+</button>
+                        </div>
+                        <div class="item-price" id="price-${newCartId}">$${item.price.toFixed(2)}</div>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(cartItemDiv);
+
+                // Remove from saved items
+                delete savedItems[savedId];
+                document.querySelector(`[data-id="${savedId}"]`).remove();
+                updateCartTotals();
+
+                alert('Item moved to cart!');
+            }
+        }
+
+        // Function to remove all items
+        function removeAll() {
+            if (confirm('Are you sure you want to remove all items from your cart?')) {
+                cartItems = {};
+                document.getElementById('cart-items').innerHTML = '';
+                updateCartTotals();
+            }
+        }
+
+        // Function to apply coupon
+        function applyCoupon() {
+            const couponCode = document.getElementById('coupon-input').value.trim().toLowerCase();
+            
+            if (couponCode === 'save10') {
+                discountAmount = 100.00;
+                alert('Coupon applied! You saved $40 more!');
+            } else if (couponCode === 'welcome') {
+                discountAmount = 80.00;
+                alert('Welcome coupon applied! You saved $20 more!');
+            } else if (couponCode === '') {
+                alert('Please enter a coupon code');
+                return;
+            } else {
+                alert('Invalid coupon code');
+                return;
+            }
+            
+            updateCartTotals();
+            document.getElementById('coupon-input').value = '';
+        }
+
+        // Function for checkout
+        function checkout() {
+            const totalItems = Object.keys(cartItems).length;
+            if (totalItems === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            alert('Redirecting to checkout... (This is a demo)');
+        }
+
+        // Function to go back to shop
+        function backToShop() {
+            alert('Redirecting to shop... (This is a demo)');
+        }
+
+        // Function for shop now button
+        function shopNow() {
+            alert('Redirecting to shop... (This is a demo)');
+        }
+
+        // Initialize cart totals on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartTotals();
+        });
+
+        // Add event listeners for keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.key === 'c') {
+                event.preventDefault();
+                checkout();
+            }
+            if (event.ctrlKey && event.key === 'b') {
+                event.preventDefault();
+                backToShop();
+            }
+        });
+
+        // Add enter key support for coupon input
+        document.getElementById('coupon-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                applyCoupon();
+            }
+        });
+    </script>
 </body>
 </html>

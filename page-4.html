@@ -61,7 +61,7 @@
     <nav class="breadcrumbs">
       <a href="#">Home</a> &gt;
       <a href="#">Clothings</a> &gt;
-      <a href="#">Men’s wear</a> &gt;
+      <a href="#">Men's wear</a> &gt;
       <span>Summer clothing</span>
     </nav>
   </div>
@@ -252,18 +252,6 @@
   <button>Shop now</button>
 </div>
 
-
-  
-
-    
-  
- 
-
- 
-
-
-
-
      <footer>
       <div class="newsletter">
         <h3>Subscribe On Our Newsletter</h3>
@@ -344,5 +332,704 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Wait for DOM to load
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        // Image Gallery Functionality
+        function initImageGallery() {
+          const mainImage = document.querySelector('.main-image');
+          const thumbnails = document.querySelectorAll('.thumbnails img');
+          
+          if (mainImage && thumbnails.length > 0) {
+            thumbnails.forEach((thumb, index) => {
+              thumb.addEventListener('click', function() {
+                // Remove active class from all thumbnails
+                thumbnails.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked thumbnail
+                this.classList.add('active');
+                // Change main image source
+                mainImage.src = this.src;
+                
+                // Add fade effect
+                mainImage.style.opacity = '0.5';
+                setTimeout(() => {
+                  mainImage.style.opacity = '1';
+                }, 200);
+              });
+            });
+            
+            // Set first thumbnail as active initially
+            if (thumbnails[0]) {
+              thumbnails[0].classList.add('active');
+            }
+          }
+        }
+        
+        // Tab Switching Functionality
+        function initTabs() {
+          const tabButtons = document.querySelectorAll('.tabs button');
+          const tabContent = document.querySelector('.tab-content');
+          
+          if (tabButtons.length > 0 && tabContent) {
+            tabButtons.forEach((button, index) => {
+              button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Update tab content based on which tab was clicked
+                updateTabContent(this.textContent.trim(), tabContent);
+              });
+            });
+          }
+        }
+        
+        function updateTabContent(tabName, contentElement) {
+          let content = '';
+          
+          switch(tabName) {
+            case 'Description':
+              content = `
+                <p class="description-text">
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+                <div class="specs">
+                  <table>
+                    <tr><td>Model</td><td>#8786987</td></tr>
+                    <tr><td>Style</td><td>Classic style</td></tr>
+                    <tr><td>Certificate</td><td>ISO 4569</td></tr>
+                    <tr><td>Size</td><td>34mm x 45.9mm x 19mm</td></tr>
+                    <tr><td>Memory</td><td>3GB RAM</td></tr>
+                  </table>
+                </div>
+                <ul class="feature-list">
+                  <li>Some great feature name here</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur</li>
+                  <li>Duis aute irure dolor in reprehenderit</li>
+                  <li>Duis aute irure dolor in reprehenderit</li>
+                </ul>
+              `;
+              break;
+            case 'Reviews':
+              content = `
+                <div class="reviews-section">
+                  <div class="review-summary">
+                    <h4>Customer Reviews (32)</h4>
+                    <div class="rating-breakdown">
+                      <div>★★★★★ 5 stars (20)</div>
+                      <div>★★★★☆ 4 stars (8)</div>
+                      <div>★★★☆☆ 3 stars (3)</div>
+                      <div>★★☆☆☆ 2 stars (1)</div>
+                      <div>★☆☆☆☆ 1 star (0)</div>
+                    </div>
+                  </div>
+                  <div class="individual-reviews">
+                    <div class="review">
+                      <strong>John D.</strong> - ★★★★★
+                      <p>Great quality shirt! Fits perfectly and the material is very comfortable.</p>
+                    </div>
+                    <div class="review">
+                      <strong>Sarah M.</strong> - ★★★★☆
+                      <p>Good product overall, delivery was fast. Color is slightly different from the image.</p>
+                    </div>
+                  </div>
+                </div>
+              `;
+              break;
+            case 'Shipping':
+              content = `
+                <div class="shipping-info">
+                  <h4>Shipping Information</h4>
+                  <table>
+                    <tr><td>Processing Time</td><td>1-2 business days</td></tr>
+                    <tr><td>Standard Shipping</td><td>5-7 business days ($5.99)</td></tr>
+                    <tr><td>Express Shipping</td><td>2-3 business days ($12.99)</td></tr>
+                    <tr><td>Overnight Shipping</td><td>1 business day ($24.99)</td></tr>
+                    <tr><td>Free Shipping</td><td>Orders over $50</td></tr>
+                  </table>
+                  <p><strong>International Shipping:</strong> Available to most countries. Delivery time varies by location.</p>
+                  <p><strong>Return Policy:</strong> 30-day return policy for unused items in original packaging.</p>
+                </div>
+              `;
+              break;
+            case 'About seller':
+              content = `
+                <div class="seller-info">
+                  <h4>About Guanjoi Trading LLC</h4>
+                  <p><strong>Location:</strong> Berlin, Germany</p>
+                  <p><strong>Established:</strong> 2015</p>
+                  <p><strong>Rating:</strong> 4.8/5 (1,250 reviews)</p>
+                  <p><strong>Specializes in:</strong> Men's clothing, accessories, and fashion items</p>
+                  <p>Guanjoi Trading LLC has been a trusted supplier of high-quality men's fashion for over 8 years. We pride ourselves on excellent customer service and fast worldwide shipping.</p>
+                  <div class="seller-stats">
+                    <div>✓ Verified Seller</div>
+                    <div>✓ 98% Positive Feedback</div>
+                    <div>✓ Fast Shipping</div>
+                    <div>✓ Quality Guarantee</div>
+                  </div>
+                </div>
+              `;
+              break;
+          }
+          
+          contentElement.innerHTML = content;
+        }
+        
+        // Quantity Selection
+        function initQuantitySelector() {
+          const detailsSection = document.querySelector('.details');
+          if (detailsSection) {
+            const quantityHTML = `
+              <div class="quantity-selector" style="margin: 1rem 0; display: flex; align-items: center; gap: 10px;">
+                <label for="quantity">Quantity:</label>
+                <button type="button" id="decrease" style="background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="999" style="width: 60px; text-align: center; padding: 5px; border: 1px solid #ddd; border-radius: 3px;">
+                <button type="button" id="increase" style="background: #007bff; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 3px;">+</button>
+              </div>
+            `;
+            
+            const infoTable = detailsSection.querySelector('.info-table');
+            if (infoTable) {
+              infoTable.insertAdjacentHTML('beforebegin', quantityHTML);
+              
+              const decreaseBtn = document.getElementById('decrease');
+              const increaseBtn = document.getElementById('increase');
+              const quantityInput = document.getElementById('quantity');
+              
+              decreaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value > 1) {
+                  quantityInput.value = value - 1;
+                }
+              });
+              
+              increaseBtn.addEventListener('click', function() {
+                let value = parseInt(quantityInput.value);
+                if (value < 999) {
+                  quantityInput.value = value + 1;
+                }
+              });
+            }
+          }
+        }
+        
+        // Save for Later Functionality
+        function initSaveForLater() {
+          const saveButton = document.querySelector('.save');
+          if (saveButton) {
+            let isSaved = false;
+            saveButton.addEventListener('click', function() {
+              isSaved = !isSaved;
+              if (isSaved) {
+                this.innerHTML = '♥ Saved';
+                this.style.color = '#e74c3c';
+                showNotification('Item saved for later!');
+              } else {
+                this.innerHTML = '♡ Save for later';
+                this.style.color = '';
+                showNotification('Item removed from saved items.');
+              }
+            });
+          }
+        }
+        
+        // Notification System
+        function showNotification(message) {
+          const notification = document.createElement('div');
+          notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+          `;
+          notification.textContent = message;
+          
+          document.body.appendChild(notification);
+          
+          setTimeout(() => {
+            notification.style.transform = 'translateX(0)';
+          }, 100);
+          
+          setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => {
+              document.body.removeChild(notification);
+            }, 300);
+          }, 3000);
+        }
+        
+        // Send Inquiry Button
+        function initInquiryButton() {
+          const inquiryBtn = document.querySelector('.primary-btn');
+          if (inquiryBtn) {
+            inquiryBtn.addEventListener('click', function() {
+              const quantity = document.getElementById('quantity')?.value || 1;
+              showNotification(`Inquiry sent for ${quantity} item(s)!`);
+            });
+          }
+        }
+        
+        // Search Functionality
+        function initSearch() {
+          const searchButton = document.querySelector('.search-bar button');
+          const searchInput = document.querySelector('.search-bar input');
+          
+          if (searchButton && searchInput) {
+            searchButton.addEventListener('click', function() {
+              const searchTerm = searchInput.value.trim();
+              if (searchTerm) {
+                showNotification(`Searching for: ${searchTerm}`);
+              }
+            });
+            
+            searchInput.addEventListener('keypress', function(e) {
+              if (e.key === 'Enter') {
+                const searchTerm = this.value.trim();
+                if (searchTerm) {
+                  showNotification(`Searching for: ${searchTerm}`);
+                }
+              }
+            });
+          }
+        }
+        
+        // Price Card Selection
+        function initPriceCards() {
+          const priceCards = document.querySelectorAll('.price-card');
+          priceCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.style.transition = 'all 0.3s';
+            card.style.border = '2px solid transparent';
+            card.style.padding = '10px';
+            card.style.borderRadius = '5px';
+            
+            card.addEventListener('click', function() {
+              priceCards.forEach(c => {
+                c.style.borderColor = 'transparent';
+                c.style.backgroundColor = '';
+              });
+              this.style.borderColor = '#007bff';
+              this.style.backgroundColor = '#e3f2fd';
+              showNotification('Price tier selected!');
+            });
+            
+            card.addEventListener('mouseenter', function() {
+              if (this.style.borderColor !== 'rgb(0, 123, 255)') {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+              }
+            });
+            
+            card.addEventListener('mouseleave', function() {
+              if (this.style.borderColor !== 'rgb(0, 123, 255)') {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '';
+              }
+            });
+          });
+        }
+        
+        // Newsletter Subscription
+        function initNewsletter() {
+          const newsletterForm = document.querySelector('.newsletter form');
+          if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const email = this.querySelector('input[type="email"]').value;
+              if (email) {
+                showNotification('Successfully subscribed to newsletter!');
+                this.querySelector('input[type="email"]').value = '';
+              }
+            });
+          }
+        }
+        
+        // Add hover effects to thumbnails
+        function initThumbnailEffects() {
+          const thumbnails = document.querySelectorAll('.thumbnails img');
+          thumbnails.forEach(thumb => {
+            thumb.style.cursor = 'pointer';
+            thumb.style.transition = 'opacity 0.3s';
+            thumb.style.border = '2px solid transparent';
+            
+            thumb.addEventListener('mouseenter', function() {
+              this.style.opacity = '0.8';
+            });
+            
+            thumb.addEventListener('mouseleave', function() {
+              this.style.opacity = '1';
+            });
+          });
+        }
+        
+        // Add hover effects to tabs
+        function initTabEffects() {
+          const tabButtons = document.querySelectorAll('.tabs button');
+          tabButtons.forEach(button => {
+            button.style.cursor = 'pointer';
+            button.style.transition = 'background-color 0.3s';
+            
+            button.addEventListener('mouseenter', function() {
+              if (!this.classList.contains('active')) {
+                this.style.backgroundColor = '#f8f9fa';
+              }
+            });
+            
+            button.addEventListener('mouseleave', function() {
+              if (!this.classList.contains('active')) {
+                this.style.backgroundColor = '';
+              }
+            });
+          });
+        }
+        
+        // Shopping cart functionality
+        function initCartIcon() {
+          const cartIcon = document.querySelector('.icons > div:last-child');
+          if (cartIcon) {
+            let cartCount = 0;
+            
+            // Create cart counter
+            const counter = document.createElement('span');
+            counter.style.cssText = `
+              position: absolute;
+              top: -5px;
+              right: -5px;
+              background: #e74c3c;
+              color: white;
+              border-radius: 50%;
+              width: 20px;
+              height: 20px;
+              font-size: 12px;
+              display: none;
+              align-items: center;
+              justify-content: center;
+              font-weight: bold;
+            `;
+            counter.textContent = cartCount;
+            
+            cartIcon.style.position = 'relative';
+            cartIcon.appendChild(counter);
+            
+            // Add to cart functionality for price cards
+            const priceCards = document.querySelectorAll('.price-card');
+            priceCards.forEach(card => {
+              const addToCartBtn = document.createElement('button');
+              addToCartBtn.textContent = 'Add to Cart';
+              addToCartBtn.style.cssText = `
+                margin-top: 10px;
+                padding: 5px 10px;
+                background: #28a745;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                width: 100%;
+              `;
+              
+              addToCartBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                cartCount++;
+                counter.textContent = cartCount;
+                counter.style.display = 'flex';
+                showNotification('Item added to cart!');
+              });
+              
+              card.appendChild(addToCartBtn);
+            });
+          }
+        }
+        
+        // Initialize all functions
+        initImageGallery();
+        initTabs();
+        initQuantitySelector();
+        initSaveForLater();
+        initInquiryButton();
+        initSearch();
+        initPriceCards();
+        initNewsletter();
+        initThumbnailEffects();
+        initTabEffects();
+        initCartIcon();
+        
+        // Additional interactive features
+        
+        // Product card hover effects in related products
+        function initProductCardEffects() {
+          const productCards = document.querySelectorAll('.product-card');
+          productCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.style.transition = 'transform 0.3s, box-shadow 0.3s';
+            
+            card.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-5px)';
+              this.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0)';
+              this.style.boxShadow = '';
+            });
+            
+            card.addEventListener('click', function() {
+              showNotification('Product clicked: ' + this.querySelector('p').textContent);
+            });
+          });
+        }
+        
+        // Suggestion card effects
+        function initSuggestionCardEffects() {
+          const suggestionCards = document.querySelectorAll('.suggestion-card');
+          suggestionCards.forEach(card => {
+            card.style.cursor = 'pointer';
+            card.style.transition = 'background-color 0.3s';
+            card.style.padding = '10px';
+            card.style.borderRadius = '5px';
+            
+            card.addEventListener('mouseenter', function() {
+              this.style.backgroundColor = '#f8f9fa';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+              this.style.backgroundColor = '';
+            });
+            
+            card.addEventListener('click', function() {
+              const productName = this.querySelector('p').textContent;
+              showNotification('Viewing: ' + productName);
+            });
+          });
+        }
+        
+        // Promo banner interaction
+        function initPromoBanner() {
+          const promoButton = document.querySelector('.promo-banner button');
+          if (promoButton) {
+            promoButton.style.cursor = 'pointer';
+            promoButton.style.transition = 'all 0.3s';
+            
+            promoButton.addEventListener('click', function() {
+              showNotification('Redirecting to shop...');
+            });
+            
+            promoButton.addEventListener('mouseenter', function() {
+              this.style.transform = 'scale(1.05)';
+            });
+            
+            promoButton.addEventListener('mouseleave', function() {
+              this.style.transform = 'scale(1)';
+            });
+          }
+        }
+        
+        // Social media links
+        function initSocialLinks() {
+          const socialLinks = document.querySelectorAll('.social-icons a');
+          socialLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              const platform = this.href.includes('facebook') ? 'Facebook' : 
+                            this.href.includes('twitter') || this.href.includes('x.com') ? 'Twitter' :
+                            this.href.includes('linkedin') ? 'LinkedIn' :
+                            this.href.includes('instagram') ? 'Instagram' :
+                            this.href.includes('youtube') ? 'YouTube' : 'Social Media';
+              showNotification(`Opening ${platform}...`);
+              // In a real scenario, you would open the link
+              setTimeout(() => {
+                window.open(this.href, '_blank');
+              }, 1000);
+            });
+          });
+        }
+        
+        // Breadcrumb navigation
+        function initBreadcrumbs() {
+          const breadcrumbLinks = document.querySelectorAll('.breadcrumbs a');
+          breadcrumbLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              showNotification(`Navigating to ${this.textContent}...`);
+            });
+          });
+        }
+        
+        // Navigation menu effects
+        function initNavMenu() {
+          const menuLinks = document.querySelectorAll('.left-menu a');
+          menuLinks.forEach(link => {
+            link.style.transition = 'color 0.3s';
+            
+            link.addEventListener('mouseenter', function() {
+              this.style.color = '#007bff';
+            });
+            
+            link.addEventListener('mouseleave', function() {
+              this.style.color = '#333';
+            });
+            
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              showNotification(`Navigating to ${this.textContent}...`);
+            });
+          });
+        }
+        
+        // Footer links
+        function initFooterLinks() {
+          const footerLinks = document.querySelectorAll('.footer-links a');
+          footerLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+              e.preventDefault();
+              showNotification(`Opening ${this.textContent} page...`);
+            });
+          });
+        }
+        
+        // App store buttons
+        function initAppStoreButtons() {
+          const appStoreButtons = document.querySelectorAll('.stores img');
+          appStoreButtons.forEach(button => {
+            button.style.cursor = 'pointer';
+            button.style.transition = 'transform 0.3s';
+            
+            button.addEventListener('mouseenter', function() {
+              this.style.transform = 'scale(1.05)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+              this.style.transform = 'scale(1)';
+            });
+            
+            button.addEventListener('click', function() {
+              const store = this.src.includes('app-store') ? 'App Store' : 'Google Play';
+              showNotification(`Opening ${store}...`);
+            });
+          });
+        }
+        
+        // Profile/Account icons
+        function initProfileIcons() {
+          const iconDivs = document.querySelectorAll('.icons > div');
+          iconDivs.forEach(iconDiv => {
+            iconDiv.style.cursor = 'pointer';
+            iconDiv.style.transition = 'color 0.3s';
+            
+            iconDiv.addEventListener('click', function() {
+              const action = this.querySelector('p').textContent;
+              showNotification(`Opening ${action}...`);
+            });
+            
+            iconDiv.addEventListener('mouseenter', function() {
+              this.style.color = '#007bff';
+            });
+            
+            iconDiv.addEventListener('mouseleave', function() {
+              this.style.color = '';
+            });
+          });
+        }
+        
+        // Category dropdown simulation
+        function initCategoryDropdown() {
+          const categorySpan = document.querySelector('.left-menu span');
+          if (categorySpan) {
+            categorySpan.style.cursor = 'pointer';
+            
+            categorySpan.addEventListener('click', function() {
+              showNotification('Category menu opened!');
+              // In a real scenario, you would show a dropdown menu
+            });
+          }
+        }
+        
+        // Language/Currency selector
+        function initLanguageSelector() {
+          const langLink = document.querySelector('.right-menu a');
+          if (langLink) {
+            langLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              showNotification('Language/Currency selector opened!');
+            });
+          }
+        }
+        
+        // Seller profile button
+        function initSellerProfile() {
+          const sellerBtn = document.querySelector('.secondary-btn');
+          if (sellerBtn) {
+            sellerBtn.addEventListener('click', function() {
+              showNotification('Opening seller profile...');
+            });
+          }
+        }
+        
+        // Add keyboard navigation
+        function initKeyboardNavigation() {
+          document.addEventListener('keydown', function(e) {
+            // Tab navigation for tabs
+            if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+              const activeTab = document.querySelector('.tabs button.active');
+              if (activeTab) {
+                const tabs = Array.from(document.querySelectorAll('.tabs button'));
+                const currentIndex = tabs.indexOf(activeTab);
+                let newIndex;
+                
+                if (e.key === 'ArrowLeft') {
+                  newIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+                } else {
+                  newIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+                }
+                
+                tabs[newIndex].click();
+                e.preventDefault();
+              }
+            }
+            
+            // Escape to close notifications
+            if (e.key === 'Escape') {
+              const notifications = document.querySelectorAll('[style*="position: fixed"]');
+              notifications.forEach(notification => {
+                if (notification.textContent && notification.style.background) {
+                  notification.remove();
+                }
+              });
+            }
+          });
+        }
+        
+        // Initialize additional features
+        initProductCardEffects();
+        initSuggestionCardEffects();
+        initPromoBanner();
+        initSocialLinks();
+        initBreadcrumbs();
+        initNavMenu();
+        initFooterLinks();
+        initAppStoreButtons();
+        initProfileIcons();
+        initCategoryDropdown();
+        initLanguageSelector();
+        initSellerProfile();
+        initKeyboardNavigation();
+        
+        // Add a welcome message
+        setTimeout(() => {
+          showNotification('Welcome! Page is fully interactive.');
+        }, 1000);
+        
+      });
+    </script>
   </body>
 </html>
